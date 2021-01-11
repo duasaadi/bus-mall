@@ -12,27 +12,7 @@
 <body>
     <header>
         <nav>
-            <ul>
-                <li><a href="#">Goat Town</a></li>
-                <li><a href="#">Home</a></li>
-                <li><a href="#">Adopt a Goat</a></li>
-                <li><a href="#">Become a Goat</a></li>
-            </ul>
-        </nav>
-    </header>
-    <main>
-        <section>
-            <ul id="busMall-clicks">
-                <h2>Goat Likes</h2>
-                <li>cruising goat : 0</li>
-                <li>gloat your goat : 0</li>
-                <li>sassy goat : 0</li>
-                <li>smiling goat : 0</li>
-                <li>sweater goat : 0</li>
-                <li>goat out of hand : 0</li>
-                <li>kissing goat : 0</li>
 
-            </ul>
 
         </section>
 
@@ -40,31 +20,40 @@
             <h1>I've got a few pictures for you!</h1>
 
             <div id="left_Item">
-                <img id="left_Item_img" src="bag.jpg" alt="Item">
+                <img id="left_Item_img" src="assets/bag.jpg" alt="Item">
 
-                <p id="middle_Item">bag</p>
+                <p id="left_Item_h2">bag</p>
             </div>
 
             <div id="middle_Item">
-                <img id="middle_Item_img" src="chair.jpg" alt="Item">
+                <img id="middle_Item_img" src="assets/chair.jpg" alt="Item">
 
                 <h2 id="middle_Itemt_h2">chair</h2>
             </div>
 
             <div id="right_Item">
-                <img id="right_Item_img" src="shark.jpg" alt="Item">
+                <img id="right_Item_img" src="assets/shark.jpg" alt="Item">
 
                 <h2 id="right_Item_h2">shark</h2>
             </div>
-
+ 
 
         </section>
+
+        <section>
+            <canvas id="canvas" width="200" height="150"></canvas>
+            <canvas id="itemChart" width="400" height="400"></canvas>
+
+          </section>
+
     </main>
     <footer>
         <div>
             <p>Sample Hoofer Text</p>
         </div>
     </footer>
+    <script src = "https://cdn.jsdelivr.net/npm/chart.js@2.9.4/dist/Chart.min.js"></script>
+
     <script src="app.js"></script>
 </body>
 
