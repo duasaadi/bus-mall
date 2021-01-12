@@ -14,9 +14,52 @@ var itemSection = document.getElementById('all_Items');
 
 var itemCanvas = document.getElementById('itemChart');
 var trialsleft = 5;
+// var itemtCanvas = document.getElementById('itemtChart').getContext('2d');
+// var itemCanvas2 = document.getElementById('itemChart2').getContext('2d');
+
+var clearDataBtn = document.getElementById('clearLocalStorage');
+
+var shownImages = []; // this array will be responsible  for keeping track of the shown img at the current loop
+
+
+function storeData() {
+
+    localStorage.setItem('buttom_section', JSON.stringify(arrayOfItems));
+    console.log(localStorage);
+}
+function clearLocalStorage() {
+
+    localStorage.clear();
+
+    arrayOfItems = [];
+
+   
+}
+
+function checkAndRestore() {
+
+    if (localStorage.length > 0) { // check if the local storage has any values in it
+        arrayOfItems = JSON.parse(localStorage.getItem('buttom_section')); // restore the data from the local storage
+        
+    }
+}
 
 
 
+
+// creating the objects
+function generateObjects() {
+    for (var i = 0; i < arrayOfImages.length; i++) {
+        new Product(arrayOfImages[i]);
+    }
+}
+generateObjects();
+checkAndRestore();
+
+
+
+
+//  costructor for images
 function Item(name, image) {
     this.image = image;
     this.name = name.split('.')[0];
@@ -36,6 +79,16 @@ function renderItem(leftImage, middleImage, rightImage) {
     leftItemText.textContent = arrayOfItems[leftImage].name;
     middleItemText.textContent = arrayOfItems[middleImage].name;
     rightItemText.textContent = arrayOfItems[rightImage].name;
+
+
+    arrayOfProduct[leftImg].timesShown++;
+    arrayOfProduct[middleImg].timesShown++;
+    arrayOfProduct[rightImg].timesShown++;
+    storeData();
+
+}
+console.log(arrayOfProduct);
+
 
 }
 
@@ -191,4 +244,6 @@ new Item('wine-glass', 'wine-glass.jpg');
 
 
 itemSection.addEventListener('click', countItem);
+clearDataBtn.addEventListener('click', clearLocalStorage);
+
 pickItem();
