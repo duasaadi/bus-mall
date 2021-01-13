@@ -1,5 +1,5 @@
 var arrayOfItems = [];
-var shownImages = []; // this array will be responsible  for keeping track of the shown img at the current loop
+var arrayOfShownImages = []; // this array will be responsible  for keeping track of the shown img at the current loop
 
 
 var leftItemImg = document.getElementById('left_Item_img');
@@ -13,50 +13,46 @@ var rightItemText = document.getElementById('right_Item_h2');
 var itemSection = document.getElementById('all_Items');
 
 var itemCanvas = document.getElementById('itemChart');
-var trialsleft = 5;
-// var itemtCanvas = document.getElementById('itemtChart').getContext('2d');
-// var itemCanvas2 = document.getElementById('itemChart2').getContext('2d');
 
 var clearDataBtn = document.getElementById('clearLocalStorage');
+var trialsleft = 5;
 
-var shownImages = []; // this array will be responsible  for keeping track of the shown img at the current loop
 
 
 function storeData() {
 
-    localStorage.setItem('buttom_section', JSON.stringify(arrayOfItems));
+    localStorage.setItem('button', JSON.stringify(arrayOfItems));
     console.log(localStorage);
 }
+
+
 function clearLocalStorage() {
 
     localStorage.clear();
 
     arrayOfItems = [];
 
-   
 }
 
 function checkAndRestore() {
 
     if (localStorage.length > 0) { // check if the local storage has any values in it
-        arrayOfItems = JSON.parse(localStorage.getItem('buttom_section')); // restore the data from the local storage
-        
+        arrayOfItems = JSON.parse(localStorage.getItem('button')); // restore the data from the local storage
+
     }
 }
 
+//function that ensure the images currently displayed are not the same as the next images to be displayed
+function checkAvailability(itemName) {
+    for (let index = 0; index < arrayOfShownImages.length; index++) {
 
+        if (arrayOfShownImages[index].name === itemName) {
+            return true; // because I want it to keep generating images as long as the previous one = the current one
+        }
 
-
-// creating the objects
-function generateObjects() {
-    for (var i = 0; i < arrayOfImages.length; i++) {
-        new Product(arrayOfImages[i]);
     }
+    return false; // so it breaks out the do-while loop because they are not the same.
 }
-generateObjects();
-checkAndRestore();
-
-
 
 
 //  costructor for images
@@ -80,35 +76,69 @@ function renderItem(leftImage, middleImage, rightImage) {
     middleItemText.textContent = arrayOfItems[middleImage].name;
     rightItemText.textContent = arrayOfItems[rightImage].name;
 
+    console.log(leftItemImg);
+    console.log(arrayOfItems);
 
-    arrayOfProduct[leftImg].timesShown++;
-    arrayOfProduct[middleImg].timesShown++;
-    arrayOfProduct[rightImg].timesShown++;
+    arrayOfItems[leftImage].timeShownCounter++;
+    arrayOfItems[middleImage].timeShownCounter++;
+    arrayOfItems[rightImage].timeShownCounter++;
     storeData();
 
 }
-console.log(arrayOfProduct);
+// console.log(arrayOfItems);
 
 
-}
+
 
 
 function renderChart() {
-    var myChart = new Chart(goatCanvas, {
+    arrayOfItemNames = [];
+    for (let index = 0; index < arrayOfItem.length.; index++) {
+        arrayOfItemNames[index].push(arrayOfItems[index].name)
+
+        arrayNumOfClicks = [];
+        for (let index = 0; index < arrayOfItems; index++) {
+            arrayNumOfClicks[index].push(arrayOfItems[index].clickCounter)
+
+        }
+
+        arrayOfShownImages = [];
+        for (let index = 0; index < arrayOfShownImages; index++) {
+            arrayOfShownImages[index].push(arrayOfShownImages[index].timeShownCounter)
+
+
+    }
+
+    var myChart = new Chart(itemChart, {
         type: 'bar',
         data: {
-            labels: arrayOfGoatNames, // array of labels (names of the goats)
+            labels: arrayOfItemNames, // array of labels (names of the Items)
             datasets: [
                 {
-                    label: '# of Goat Clicks',
-                    data: arrayOfGoatCount, // array of values (count for each goat when it was clicked)
+                    label: '# of Item Clicks',
+                    data: arrayOfItemNames, // array of values (count for each goat when it was clicked)
                     backgroundColor: [
                         'rgba(255, 99, 132, 0.2)',
                         'rgba(54, 162, 235, 0.2)',
                         'rgba(255, 206, 86, 0.2)',
                         'rgba(75, 192, 192, 0.2)',
                         'rgba(153, 102, 255, 0.2)',
-                        'rgba(255, 159, 64, 0.2)'
+                        'rgba(255, 159, 64, 0.2)',
+                        'rgba(255, 99, 132, 0.2)',
+                        'rgba(255, 99, 132, 0.2)',
+                        'rgba(255, 99, 132, 0.2)',
+                        'rgba(255, 99, 132, 0.2)',
+                        'rgba(255, 99, 132, 0.2)',
+                        'rgba(255, 99, 132, 0.2)',
+                        'rgba(255, 99, 132, 0.2)',
+                        'rgba(255, 99, 132, 0.2)',
+                        'rgba(255, 99, 132, 0.2)',
+                        'rgba(255, 99, 132, 0.2)',
+                        'rgba(255, 99, 132, 0.2)',
+                        'rgba(255, 99, 132, 0.2)',
+                        'rgba(255, 99, 132, 0.2)',
+                        'rgba(255, 99, 132, 0.2)',
+
                     ],
                     borderColor: [
                         'rgba(255, 99, 132, 1)',
@@ -116,29 +146,78 @@ function renderChart() {
                         'rgba(255, 206, 86, 1)',
                         'rgba(75, 192, 192, 1)',
                         'rgba(153, 102, 255, 1)',
-                        'rgba(255, 159, 64, 1)'
+                        'rgba(255, 159, 64, 1)',
+                        'rgba(255, 99, 132, 1)',
+                        'rgba(255, 99, 132, 1)',
+                        'rgba(255, 99, 132, 1)',
+                        'rgba(255, 99, 132, 1)',
+                        'rgba(255, 99, 132, 1)',
+                        'rgba(255, 99, 132, 1)',
+                        'rgba(255, 99, 132, 1)',
+                        'rgba(255, 99, 132, 1)',
+                        'rgba(255, 99, 132, 1)',
+                        'rgba(255, 99, 132, 1)',
+                        'rgba(255, 99, 132, 1)',
+                        'rgba(255, 99, 132, 1)',
+                        'rgba(255, 99, 132, 1)',
+                        'rgba(255, 99, 132, 1)',
+
                     ],
                     borderWidth: 1
                 },
+
                 {
-                    label: 'Time shown for the Goat',
-                    data: arrayOfGoatsShown, // array of values (count for each goat when it was clicked)
+                    label: 'Time shown for the Item',
+                    data: arrayOfShownImages, // array of values (count for each goat when it was clicked)
                     backgroundColor: [
                         'rgba(255, 99, 132, 0.2)',
                         'rgba(54, 162, 235, 0.2)',
                         'rgba(255, 206, 86, 0.2)',
                         'rgba(75, 192, 192, 0.2)',
                         'rgba(153, 102, 255, 0.2)',
-                        'rgba(255, 159, 64, 0.2)'
+                        'rgba(255, 159, 64, 0.2)',
+                        'rgba(255, 99, 132, 0.2)',
+                        'rgba(255, 99, 132, 0.2)',
+                        'rgba(255, 99, 132, 0.2)',
+                        'rgba(255, 99, 132, 0.2)',
+                        'rgba(255, 99, 132, 0.2)',
+                        'rgba(255, 99, 132, 0.2)',
+                        'rgba(255, 99, 132, 0.2)',
+                        'rgba(255, 99, 132, 0.2)',
+                        'rgba(255, 99, 132, 0.2)',
+                        'rgba(255, 99, 132, 0.2)',
+                        'rgba(255, 99, 132, 0.2)',
+                        'rgba(255, 99, 132, 0.2)', ,
+                        'rgba(255, 99, 132, 0.2)',
+                        'rgba(255, 99, 132, 0.2)',
+
                     ],
+
                     borderColor: [
                         'rgba(255, 99, 132, 1)',
                         'rgba(54, 162, 235, 1)',
                         'rgba(255, 206, 86, 1)',
                         'rgba(75, 192, 192, 1)',
                         'rgba(153, 102, 255, 1)',
-                        'rgba(255, 159, 64, 1)'
+                        'rgba(255, 159, 64, 1)',
+                        'rgba(255, 99, 132, 1)',
+                        'rgba(255, 99, 132, 1)',
+                        'rgba(255, 99, 132, 1)',
+                        'rgba(255, 99, 132, 1)',
+                        'rgba(255, 99, 132, 1)',
+                        'rgba(255, 99, 132, 1)',
+                        'rgba(255, 99, 132, 1)',
+                        'rgba(255, 99, 132, 1)',
+                        'rgba(255, 99, 132, 1)',
+                        'rgba(255, 99, 132, 1)',
+                        'rgba(255, 99, 132, 1)',
+                        'rgba(255, 99, 132, 1)',
+                        'rgba(255, 99, 132, 1)',
+                        'rgba(255, 99, 132, 1)',
+                        'rgba(255, 99, 132, 1)',
+
                     ],
+
                     borderWidth: 1
                 }]
         },
@@ -155,16 +234,6 @@ function renderChart() {
 }
 
 
-
-function checkAvailability(selectedGoatName) {
-
-    for (var index = 0; index < shownImages.length; index++) {
-        if (shownImages[index].name === selectedGoatName) {
-            return true;
-        }
-    }
-    return false;
-}
 
 
 
@@ -185,10 +254,10 @@ function pickItem() {
 
     shownImages = [];
 
-  shownImages.push(
-    arrayOfGoats[leftImage],
-    arrayOfGoats[rightImage]
-  )
+    shownImages.push(
+        arrayOfItems[leftImage],
+        arrayOfItems[rightImage]
+    )
 
 }
 
@@ -198,6 +267,8 @@ function checkItem(objectIndicator) {
         if (arrayOfItems[index].url === objectIndicator) {
             arrayOfItems[index].clickcounter++;
             trialsleft--;
+            storeData();
+
         }
     }
 }
@@ -216,6 +287,7 @@ function countItem(event) {
 
     } else {
         itemSection.removeEventListener('click', countItem);
+        renderChart();
         console.log(arrayOfItems);
     }
 }
@@ -240,6 +312,7 @@ new Item('sweep', 'sweep.jpg');
 new Item('tauntaun', 'tauntaun.jpg');
 new Item('unicorn', 'unicorn.jpg');
 new Item('usb', 'usb.gif');
+new Item('water-can', 'water-can.jpg');
 new Item('wine-glass', 'wine-glass.jpg');
 
 
@@ -247,3 +320,4 @@ itemSection.addEventListener('click', countItem);
 clearDataBtn.addEventListener('click', clearLocalStorage);
 
 pickItem();
+
